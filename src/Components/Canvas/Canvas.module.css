@@ -1,0 +1,8 @@
+
+.CanvasStyle {
+    border: 2px solid #333; /* Dark border for the canvas */
+    background-color: #fff; /* White background for the canvas */
+    cursor: crosshair; /* Change cursor to crosshair for drawing */
+    height: 96vh;
+    width: 92vw;
+  }
