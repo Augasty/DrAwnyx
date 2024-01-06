@@ -6,8 +6,8 @@
 }
 
 .ButtonStyle {
-    margin: 10px;
-    padding: 10px 15px;
+    margin-top: 10px;
+    padding: 10px 0px;
     width: 70px;
     cursor: pointer;
     border: none;
@@ -15,6 +15,7 @@
     font-size: 16px;
     font-weight: bold;
     color: #fff;
+    border: 2px solid black;
 }
 
 .ClearButton {

@@ -53,7 +53,7 @@ export const CanvasButtons = () => {
         </button>
       </div>
       <button className={`${style.ButtonStyle} ${style.ClearButton}`}>
-        {brushStrokeWidth}
+        Size:{brushStrokeWidth}
       </button>
       <br />
       <br />

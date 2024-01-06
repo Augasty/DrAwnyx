@@ -5,13 +5,13 @@ import style from "./App.module.css"
 
 const App = () => {
   return (
+    <div className={style.Container}>
     <CanvasProvider>
-      <div className={style.Container}>
 
           <Canvas/>
       <CanvasButtons/>
-      </div>
     </CanvasProvider>
+      </div>
   )
 }
 

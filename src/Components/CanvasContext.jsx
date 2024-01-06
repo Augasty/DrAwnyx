@@ -15,7 +15,7 @@ export const CanvasProvider = ({ children }) => {
 
 
     const context = canvas.getContext("2d")
-    context.scale(1.09, 1.04);
+    context.scale(1.10, 1.065);
     context.lineCap = "round";
     context.strokeStyle = "blue";
     context.lineWidth = brushStrokeWidth;
