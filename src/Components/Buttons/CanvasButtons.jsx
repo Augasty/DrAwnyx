@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useCanvas } from "../CanvasContext";
 import style from "./style.module.css";
 export const CanvasButtons = () => {
-  const {
+  const {canvasRef,
     clearCanvas,changeBrushProperties,setBrushStrokeWidth,brushStrokeWidth,undo } = useCanvas();
 
 
@@ -23,6 +23,30 @@ export const CanvasButtons = () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [undo]);
+
+
+
+
+
+
+
+  const downloadCanvas = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const originalBackgroundColor = canvas.style.backgroundColor; // Store original background color
+    canvas.style.backgroundColor = "white"; // Set temporary background color to white
+    
+    const link = document.createElement('a');
+    const currentDate = new Date().toISOString().slice(0, 10); // Get today's date
+    const currentTime = new Date().toLocaleTimeString(); // Get current time
+
+    link.download = `canvas_image_${currentDate}_${currentTime}.png`; // Default filename
+    link.href = canvas.toDataURL(); // Create a data URL of the canvas content
+    link.click();
+
+    canvas.style.backgroundColor = originalBackgroundColor; // Restore original background color
+  };
 
   return (
     <div className={style.ButtonContainer}>
@@ -82,12 +106,18 @@ export const CanvasButtons = () => {
       </button>
 
       <br />
-      <br />
       <button
         className={`${style.ButtonStyle} ${style.ClearButton}`}
         onClick={clearCanvas}
       >
         Clear
+      </button>
+      <button
+        className={`${style.ButtonStyle} ${style.ClearButton}`}
+        onClick={downloadCanvas}
+        style={{fontWeight:'bolder'}}
+      >
+        💾
       </button>
     </div>
   );
