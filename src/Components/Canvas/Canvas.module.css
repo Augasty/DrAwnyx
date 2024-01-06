@@ -2,8 +2,12 @@
   .CanvasStyle {
     border: 3px solid #000000; /* Slightly darker border for the canvas */
     background-color: #ffffff; /* Light gray background for the canvas */
-    cursor: crosshair; /* Change cursor to crosshair for drawing */
+    cursor: crosshair; 
     height: 94vh;
     width: 91vw;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow for depth */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+
+    /* this property is very important for stylus */
+      touch-action: none;
+    
   }

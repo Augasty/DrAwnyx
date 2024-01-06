@@ -1,12 +1,29 @@
+import { useEffect } from "react";
 import { useCanvas } from "../CanvasContext";
 import style from "./style.module.css";
 export const CanvasButtons = () => {
   const {
-    clearCanvas,
-    changeBrushProperties,
-    setBrushStrokeWidth,
-    brushStrokeWidth,
-  } = useCanvas();
+    clearCanvas,changeBrushProperties,setBrushStrokeWidth,brushStrokeWidth,undo } = useCanvas();
+
+
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.ctrlKey && event.key === "z") {
+        event.preventDefault(); // Prevent the default browser behavior (like scrolling)
+        undo(); // Trigger the undo function when Ctrl + Z is pressed
+      }
+    };
+
+    // Add the event listener when the component mounts
+    document.addEventListener("keydown", handleKeyDown);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [undo]);
+
   return (
     <div className={style.ButtonContainer}>
       <button
@@ -49,12 +66,21 @@ export const CanvasButtons = () => {
           onClick={() => setBrushStrokeWidth((prev) => prev - 1)}
           disabled={brushStrokeWidth <= 1}
         >
-          -
+          {" "}
+          -{" "}
         </button>
       </div>
-      <button className={`${style.ButtonStyle} ${style.ClearButton}`}>
+      <button className={`${style.ButtonStyle} ${style.ClearButton}`} disabled>
         Size:{brushStrokeWidth}
       </button>
+      <br />
+      <button
+        className={`${style.ButtonStyle} ${style.ClearButton}`}
+        onClick={() => undo()}
+      >
+        Undo
+      </button>
+
       <br />
       <br />
       <button
